@@ -1,19 +1,18 @@
 extends layout
 
 block content
-    h1= title
+    h4= title
     p Welcome to #{title}
 
     ul
         <li><a href="#book-a">Book A</a></li>
         <li><a href="#book-b">Book B</a></li>
 
-    <div class="someClass">
-    <h3>Book c</h3>
-    </div>
 
     #bbcontainer.
         Loading...
+
+    br
 
     script(id='personTemplate' , type='text/template')
         div
@@ -21,3 +20,19 @@ block content
                 <%= name %>
             p.
                 (<%= age %>), job: <%= job %>
+
+    form(id='addTask')
+        input(type='text', name='taskTitle', placeholder='Add new task')
+        input(type='submit', value='Add')
+
+    script(id='personTemplateV2' , type='text/template')
+        div
+            span(class='title').
+                <%= title %>
+            span(class='priority')
+                |&nbsp;(priority: <%= priority %>)
+            button(class='edit').
+                Edit
+            |&nbsp;
+            button(class='delete').
+                Delete
