@@ -3,8 +3,15 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.header('content-type', 'application/json');
-  res.send({list:['item-1','item-2']});
+    res.header('content-type', 'application/json');
+    res.send(
+        {
+            title: 'No title (s)',
+            author: 'unknown',
+            releaseDate: 2011,
+            description: ''
+        }
+    );
 });
 
 /* POST users listing. */
