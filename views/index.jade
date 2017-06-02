@@ -25,6 +25,10 @@ block content
         input(type='text', name='taskTitle', placeholder='Add new task')
         input(type='submit', value='Add')
 
+    script(id='taskModel' , type='text/template')
+        span.
+            <%= title %> (with priority:  <%= priority %>)
+
     script(id='personTemplateV2' , type='text/template')
         div
             span(class='title').
