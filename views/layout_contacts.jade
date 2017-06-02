@@ -1,0 +1,26 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src="/javascripts/jquery-3.2.1.min.js")
+        script(src="/javascripts/underscore-min.js")
+        script(src="/javascripts/backbone-min.js")
+
+        script(src="/javascripts/contacts/app.main.js")
+        script(src="/javascripts/contacts/models.js")
+        script(src="/javascripts/contacts/views.js")
+        script(src="/javascripts/contacts/collections.js")
+        script(src="/javascripts/contacts/routers.js")
+
+        script(type='text/javascript').
+            new App.Router();
+            Backbone.history.start();
+
+            App.contacts = new App.Collection.Contacts();
+            App.contacts.fetch().then(function () {
+                new App.View.App({collection:App.contacts});
+            })
+
+    body
+        block content
