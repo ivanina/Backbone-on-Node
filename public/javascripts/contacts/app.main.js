@@ -8,6 +8,7 @@
         Router: {}
     };
     window.vent = _.extend({},Backbone.Events);
+
     window.App.template = function (id) {
         return _.template($("#" + id).html());
     };

@@ -22,7 +22,7 @@ block content
         br
         br
         div
-            form(method='POST',id='add_contact')
+            form(method='POST', id='add_contact')
                 div
                     label.
                         First Name
@@ -42,6 +42,8 @@ block content
                 br
                 div
                     input(type='submit', value='Submit')
+
+        div(id="edit_contact_container")
 
 
     script(id='contactModelSmall' , type='text/template')
@@ -71,23 +73,27 @@ block content
             input(type='button', class='delete',  id!='contact_del_<%= id %>', data!='<%= id %>', value='Delete')
 
     script(id='edit_contact')
+        div.
+            Edit Contact: <%= fName %> <%= lName %>
         form(method='POST')
             div
                 label.
                     Edit First Name
-                input(type='text', name='edit_fName', id='edit_fName')
+                input(type='text', name='edit_fName', id='edit_fName', value!='<%= fName %>')
             div
                 label.
                     Edit Last Name
-                input(type='text', name='edit_lName', id='edit_lName')
+                input(type='text', name='edit_lName', id='edit_lName', value!='<%= lName %>')
             div
                 label.
                     Edit E-Mail
-                input(type='text', name='edit_email', id='edit_email')
+                input(type='text', name='edit_email', id='edit_email', value!='<%= email %>')
             div
                 label.
                     Edit Description
-                textarea( name='edit_description', id='edit_description')
+                textarea( name='edit_description', id='edit_description', value!='<%= description %>').
+                    <%= description %>
             br
             div
                 input(type='submit', value='Save')
+                input(type='button', class='cancel', value='Cancel')

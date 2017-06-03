@@ -32,20 +32,53 @@ App.View.AddContact = Backbone.View.extend({
     }
 });
 
+App.View.EditContact = Backbone.View.extend({
+    el: '#edit_contact_container',
+    initialize: function(){
+        this.render();
+    },
+    events: {
+        'submit': 'saveContact',
+        'click input.cancel': 'cancel',
+    },
+    render:function () {
+        this.$el.html(App.template('edit_contact')(this.model.toJSON()));
+        return this;
+    },
+    saveContact:function (e) {
+        e.preventDefault();
+        this.model.save({
+            fName: this.$('#edit_fName').val(),
+            lName: this.$('#edit_lName').val(),
+            email: this.$('#edit_email').val(),
+            description: this.$('#edit_description').val()
+        });
+        //this.$el.html('');
+        this.remove();
+    },
+    cancel: function () {
+        //this.$el.html('');
+        this.remove();
+    }
+});
+
 App.View.Contact = Backbone.View.extend({
     initialize:function () {
-        this.model.on('destroy',this.remove, this)
+        this.model.on('destroy',this.remove, this);
+        this.model.on('change',this.render, this);
     },
     tagName: 'tr',
     events: {
         'click input.edit': 'edit',
-        'click input.delete': 'del'
+        'click input.delete': 'del',
+
     },
     render: function () {
         this.$el.html(App.template('contactModelTable')(this.model.toJSON()));
         return this;
     },
     edit: function () {
+        new App.View.EditContact({model:this.model});
         return this;
     },
     del: function () {
